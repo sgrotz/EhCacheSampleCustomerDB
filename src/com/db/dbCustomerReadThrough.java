@@ -7,6 +7,8 @@ import java.sql.Statement;
 import com.ehcache.objects.customer;
 import net.sf.ehcache.constructs.blocking.CacheEntryFactory;
 
+// ReadThroughClass, which is used to collect a customer from the database. This class is called, when read through is enabled.
+
 public class dbCustomerReadThrough implements CacheEntryFactory{
 	
 	public Object createEntry(Object key) throws Exception {

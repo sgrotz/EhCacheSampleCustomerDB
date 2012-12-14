@@ -12,6 +12,12 @@ import net.sf.ehcache.Element;
 import net.sf.ehcache.writer.CacheWriter;
 import net.sf.ehcache.writer.writebehind.operations.SingleOperationType;
 
+// Sample class to implement the cacheWriter methods. 
+// The below methods implement the CRUD operations to the database.
+// Some methods also have an ALL function - which is used, if using write-behind.
+
+
+
 public class createCustomerClass implements CacheWriter {
 
 	@Override
@@ -22,13 +28,16 @@ public class createCustomerClass implements CacheWriter {
 
 	@Override
 	public void delete(CacheEntry arg0) throws CacheException {
-		// TODO Auto-generated method stub
+		// This delete method is called, when a customer is deleted from the cache. 
+		// This is a WRITE-THROUGH functionality
 		
 	}
 
 	@Override
 	public void deleteAll(Collection<CacheEntry> arg0) throws CacheException {
-		// TODO Auto-generated method stub
+		// This delete method is called, when a customer is deleted from the cache. 
+		// This is a WRITE-BEHIND functionality
+		// This method is similar to the delete function, but it should delete an array of objects.
 		
 	}
 
