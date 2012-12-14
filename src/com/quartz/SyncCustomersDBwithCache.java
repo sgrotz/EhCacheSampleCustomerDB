@@ -18,6 +18,11 @@ import org.quartz.JobExecutionException;
 import com.ehcache.objects.customer;
 
 
+// The following class is invoked by the scheduler to synchronize the database with the cache. Take a look at the
+// runScheduler class file for more information about the job. 
+// This class contains the information how to read the data from the DB and write it to the cache. 
+
+
 public class SyncCustomersDBwithCache implements Job{
 
 	

@@ -32,16 +32,19 @@ public class runScheduler {
 			
 			// Create a new job data map and add the cachemanager into it. 
 			// That way, the job can access the shared object. 
-			//JobDataMap jdm = new JobDataMap();
-			//jdm.put("cacheManager", manager);
+			// JobDataMap jdm = new JobDataMap();
+			// jdm.put("cacheManager", manager);
 			
 			scheduler.start();
 			
+			
+			// Create a new job ...
 			JobDetail job = newJob(SyncCustomersDBwithCache.class)
 			        .withIdentity("LoadCustomersIntoDB", "Static Data")
 			        //.usingJobData(jdm)
 			        .build();
 			
+			// Create a new trigger ...
 		    Trigger trigger = newTrigger()
 		            .withIdentity("TriggerCustomerLoad", "Static Data")
 		            // .startNow()
@@ -52,12 +55,14 @@ public class runScheduler {
 		                    )            
 		            .build();
 
+		    // Make sure to tell the scheduler about the new job...
 		    scheduler.scheduleJob(job, trigger);
 			
 			
 			System.out.println("Scheduler is now running ... ");
 			
 			while (true) {
+				// Infinite loop to make sure the scheduler keeps running ;) ...
 				Thread.sleep(1000);
 			}	
 

@@ -11,6 +11,9 @@ import java.util.Random;
 
 import com.ehcache.objects.customer;
 
+
+// Sample class to create new customers only in the database. 
+
 public class createNewCustomer {
 
 	private static int randomValue = 10000000;
@@ -21,8 +24,10 @@ public class createNewCustomer {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
+		// Specify the amount of customers to be created in the DB
 		int count = 10;
 
+		// Run the createCustomer method
 		for (int i = 0; i < count; i++) {
 			createCustomer();
 		}

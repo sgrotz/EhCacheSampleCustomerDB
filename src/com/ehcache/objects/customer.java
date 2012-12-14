@@ -2,6 +2,11 @@ package com.ehcache.objects;
 
 import java.io.Serializable;
 
+// This class implements the customer POJO Object. Each customer has an ID, Firstname etc. 
+// Make sure to implement the Serializable class - otherwise EhCache will throw an error!
+// The .getter methods are also used by the Terracotta Array, to extract search values for its index. You can simply call the
+// getter method from within the ehcache.xml configuration file using value.NameOfGetterMethod()
+
 public class customer implements Serializable {
 
 	/**

@@ -14,6 +14,9 @@ import org.quartz.JobDataMap;
 
 import com.ehcache.objects.customer;
 
+
+// Simple class to query a customer in a database ...
+
 public class queryCustomerByID {
 
 	/**

@@ -4,14 +4,17 @@ import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.config.*;
 
+
+// This class shows how to use the fluent interface to create a cache within your code...
+// This example also uses non-stop features ...
 public class createNonStopCache {
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		
+		// Create a new configuration ...
 		Configuration configuration = new Configuration()
 			.terracotta(new TerracottaClientConfiguration().url("localhost:9510"))
 			.defaultCache(new CacheConfiguration("defaultCache", 10000))
@@ -24,16 +27,15 @@ public class createNonStopCache {
 						)
 		);
 		
+		// Tell the cacheManager about the new cache using the configuration specified above ...
 		CacheManager cacheManager = new CacheManager(configuration);
 		
-		
+		// Just sleep for 30 Seconds - then exit
 		try {
 			Thread.sleep(30000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		
 	}
 

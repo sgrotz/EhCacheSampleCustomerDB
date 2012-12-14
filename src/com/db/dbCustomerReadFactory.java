@@ -6,6 +6,9 @@ import net.sf.ehcache.Ehcache;
 import net.sf.ehcache.constructs.CacheDecoratorFactory;
 import net.sf.ehcache.constructs.blocking.SelfPopulatingCache;
 
+// Wrapper class, which will be called by ehCache, if a CacheDecorator was specified.
+// Make sure to return the SelfPopulating Cache, if using Read Through ;)
+
 public class dbCustomerReadFactory extends CacheDecoratorFactory {
 
 	@Override
