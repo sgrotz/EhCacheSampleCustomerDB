@@ -3,6 +3,7 @@ EhCacheSampleCustomerDB
 
 Version: 0.1
 Author: Stephan Grotz
+URL: https://github.com/sgrotz/EhCacheSampleCustomerDB
 
 Sample Application showcasing a sample Customer DB integration with EhCache. 
 
