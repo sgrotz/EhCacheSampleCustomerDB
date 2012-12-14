@@ -1,0 +1,63 @@
+<ehcache     
+    name="ehCacheCustomerDB"     
+    updateCheck="false">    
+    <diskStore         
+        path="./cacheStore/ehCacheCustomerDB">   
+    </diskStore>    
+    <defaultCache         
+        eternal="false"         
+        maxElementsInMemory="5000"         
+        overflowToDisk="false">    
+    </defaultCache>        
+    <cache         
+        name="customers"         
+        eternal="false"
+        timeToIdleSeconds="60"
+        timeToLiveSeconds="60" 
+        maxElementsInMemory="5000"                 
+        overflowToDisk="false"         
+        cacheLoaderTimeoutMillis="30000"
+        maxElementsOnDisk="2000"
+        statistics="true">      
+
+<!--        
+		// Can be all - local or remote
+        <cacheEventListenerFactory class="com.ehcache.runCustomAnalyzer" properties="" listenFor="all"/>
+-->
+
+<!--        
+		// Make the following attributes searchable ... -->
+	  <searchable>
+	    <searchAttribute name="FIRSTNAME" expression="value.getFIRSTNAME()"/>
+	    <searchAttribute name="LASTNAME" expression="value.getLASTNAME()"/>
+	    <searchAttribute name="REGION" expression="value.getREGION()"/>
+  	  </searchable> 
+  	  
+<!--
+		// Define a write-behind strategy with class  -->
+  	  
+  	  <cacheWriter writeMode="write_through" maxWriteDelay="60" rateLimitPerSecond="500000"
+        writeCoalescing="false" writeBatching="true" writeBatchSize="50000"
+        retryAttempts="2" retryAttemptDelaySeconds="2" writeBehindConcurrency="5">
+   		<cacheWriterFactory class="com.db.createCustomerFactory" />
+	  </cacheWriter>
+
+  	  
+<!-- 
+		// Self populating cache - reads in through this class ... 
+  	  <cacheDecoratorFactory class="com.db.dbCustomerReadFactory" properties="" />   -->
+
+        <terracotta/>            
+    </cache>    
+    
+    
+    <terracottaConfig         
+        url="localhost:9510"         
+        >    
+    </terracottaConfig>
+    
+    <!-- 
+    <cacheManagerPeerListenerFactory class="org.terracotta.ehcachedx.monitor.probe.ProbePeerListenerFactory"
+    properties="monitorAddress=localhost, monitorPort=9988, memoryMeasurement=true"/> 
+    -->
+</ehcache>
